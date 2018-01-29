@@ -2,3 +2,5 @@ data/*.tsv
 data/*.txt
 data/*.json
 
+app/appData.js
+
