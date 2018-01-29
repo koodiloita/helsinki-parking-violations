@@ -1,1 +1,4 @@
-data/data.tsv
+data/*.tsv
+data/*.txt
+data/*.json
+
