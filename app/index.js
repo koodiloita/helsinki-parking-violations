@@ -1,8 +1,19 @@
 $(document).ready(function() {
   window.mapData = createMapData(2017, 1);
-  window.geojsonData = createGeoJsonData(window.mapData)
+  window.geojsonData = createGeoJsonData(window.mapData);
+
   var map = addMapboxMap(window.config.mapBoxToken);
   loadDataToMap(map, window.geojsonData);
+
+  _.forEach(_.range(1, 13), function(month) {
+    $('#month' + month).on('click', function(ev) {
+      window.mapData = createMapData(2017, month);
+      window.geojsonData = createGeoJsonData(window.mapData);
+      map.getSource('parkingViolations').setData(window.geojsonData);
+      $('.panel .panel-item').removeClass('selected');
+      $(this).addClass('selected');
+    });
+  });
 });
 
 function loadDataToMap(map, geojsonData) {
@@ -44,15 +55,15 @@ function loadDataToMap(map, geojsonData) {
         ],
         'heatmap-radius': {
           stops: [
-            [11, 15],
-            [15, 20]
+            [11, 10],
+            [15, 15]
           ]
         },
         'heatmap-opacity': {
           default: 1,
           stops: [
-            [14, 1],
-            [15, 0]
+            [19, 1],
+            [20, 0]
           ]
         },
       }
@@ -68,9 +79,9 @@ function loadDataToMap(map, geojsonData) {
           property: 'dbh',
           type: 'exponential',
           stops: [
-            [{ zoom: 15, value: 1 }, 5],
+            [{ zoom: 15, value: 10 }, 3],
             [{ zoom: 15, value: 20 }, 10],
-            [{ zoom: 22, value: 1 }, 20],
+            [{ zoom: 22, value: 10 }, 20],
             [{ zoom: 22, value: 20 }, 50],
           ]
         },

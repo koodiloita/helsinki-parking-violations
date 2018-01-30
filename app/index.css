@@ -1,8 +1,44 @@
+body {
+  background: #000;
+  font-family: 'Raleway', sans-serif;
+  color: #F7F7F7;
+}
+
+h1 {
+  font-weight: 100;
+  text-align: center;
+  margin: 0;
+  padding: 5px 0 10px;
+  text-transform: uppercase;
+}
+
+.panel {
+  text-align: center;
+}
+
+.panel-item {
+  display: inline-block;
+  padding: 10px;
+}
+
+.panel-item.header {
+  font-size: 32px;
+}
+
+.panel-item.link {
+  cursor: pointer;
+}
+
+.panel-item.link:hover, .panel-item.link.selected {
+  background: #303030;
+}
+
 .map {
-  background: #eee;
+  background: #000;
   position: fixed;
-  top: 0;
+  top: 120px;
   left: 0;
   bottom: 0;
   right: 0;
+  color: #000;
 }
