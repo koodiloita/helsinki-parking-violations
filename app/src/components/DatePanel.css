@@ -1,0 +1,67 @@
+.DatePanel {
+  text-align: center;
+}
+
+.PanelItem {
+  padding: 10px 10px;
+  display: inline-block;
+}
+
+.PanelItem.Selected {
+  background: #333;
+}
+
+.PanelItem.Disabled {
+  opacity: 0.3;
+}
+
+.PanelItem:hover {
+  cursor: pointer;
+  background: #222;
+}
+
+.PanelItem.Selected:hover {
+  background: #333;
+}
+
+@media only screen and (max-width: 720px) {
+  .Long {
+    display: none;
+  }
+
+  .ShortHand {
+    display: none;
+  }
+
+  .Number {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1024px) {
+  .Long {
+    display: none;
+  }
+
+  .ShortHand {
+    display: block;
+  }
+
+  .Number {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .Long {
+    display: block;
+  }
+
+  .ShortHand {
+    display: none;
+  }
+
+  .Number {
+    display: none;
+  }
+}
