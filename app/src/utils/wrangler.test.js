@@ -33,155 +33,191 @@ describe('when last year is parsed', () => {
 })
 
 describe('when month selections are collected', () => {
-  it('should all the years and months and indicate whether month is selectable', () => {
+  it('should parse all the years and months grouped by year and indicate whether month is selectable', () => {
     const expectedMonthSelections = {
       '2015': [
         {
           month: '1',
+          year: '2015',
           selectable: true
         },
         {
           month: '2',
+          year: '2015',
           selectable: true
         },
         {
           month: '3',
+          year: '2015',
           selectable: true
         },
         {
           month: '4',
+          year: '2015',
           selectable: true
         },
         {
           month: '5',
+          year: '2015',
           selectable: true
         },
         {
           month: '6',
+          year: '2015',
           selectable: true
         },
         {
           month: '7',
+          year: '2015',
           selectable: true
         },
         {
           month: '8',
+          year: '2015',
           selectable: true
         },
         {
           month: '9',
+          year: '2015',
           selectable: true
         },
         {
           month: '10',
+          year: '2015',
           selectable: true
         },
         {
           month: '11',
+          year: '2015',
           selectable: true
         },
         {
           month: '12',
+          year: '2015',
           selectable: true
         }
       ],
       '2016': [
         {
           month: '1',
+          year: '2016',
           selectable: false
         },
         {
           month: '2',
+          year: '2016',
           selectable: true
         },
         {
           month: '3',
+          year: '2016',
           selectable: true
         },
         {
           month: '4',
+          year: '2016',
           selectable: true
         },
         {
           month: '5',
+          year: '2016',
           selectable: true
         },
         {
           month: '6',
+          year: '2016',
           selectable: true
         },
         {
           month: '7',
+          year: '2016',
           selectable: true
         },
         {
           month: '8',
+          year: '2016',
           selectable: true
         },
         {
           month: '9',
+          year: '2016',
           selectable: true
         },
         {
           month: '10',
+          year: '2016',
           selectable: true
         },
         {
           month: '11',
+          year: '2016',
           selectable: true
         },
         {
           month: '12',
+          year: '2016',
           selectable: true
         }
       ],
       '2017': [
         {
           month: '1',
+          year: '2017',
           selectable: true
         },
         {
           month: '2',
+          year: '2017',
           selectable: true
         },
         {
           month: '3',
+          year: '2017',
           selectable: true
         },
         {
           month: '4',
+          year: '2017',
           selectable: true
         },
         {
           month: '5',
+          year: '2017',
           selectable: true
         },
         {
           month: '6',
+          year: '2017',
           selectable: false
         },
         {
           month: '7',
+          year: '2017',
           selectable: false
         },
         {
           month: '8',
+          year: '2017',
           selectable: false
         },
         {
           month: '9',
+          year: '2017',
           selectable: false
         },
         {
           month: '10',
+          year: '2017',
           selectable: false
         },
         {
           month: '11',
+          year: '2017',
           selectable: false
         },
         {
           month: '12',
+          year: '2017',
           selectable: false
         }
       ]

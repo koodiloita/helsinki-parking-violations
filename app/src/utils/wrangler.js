@@ -8,6 +8,7 @@ const getMonthSelections = (data) => {
     result[year] = _.map(violationsSum, (sum, month) => {
       return {
         month,
+        year,
         selectable: sum > 0
       }
     })

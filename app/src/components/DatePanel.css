@@ -2,8 +2,13 @@
   text-align: center;
 }
 
+.DatePanel h1 {
+  font-weight: normal;
+  margin: 5px;
+}
+
 .PanelItem {
-  padding: 10px 10px;
+  padding: 10px;
   display: inline-block;
 }
 
@@ -22,6 +27,20 @@
 
 .PanelItem.Selected:hover {
   background: #333;
+}
+
+.ChangeYear {
+  padding: 10px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.ChangeYear:hover {
+  background: #222;
+}
+
+.ChangeYear.Disabled {
+  opacity: 0.3;
 }
 
 @media only screen and (max-width: 720px) {
