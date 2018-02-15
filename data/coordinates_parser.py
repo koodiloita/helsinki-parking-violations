@@ -1,16 +1,19 @@
 import json
+import sys
 import parser
 
 
 def main():
-    data = load_geocode_data()
-    with open('coordinates.json', 'w') as coordinates_file:
+    geocode_filename = sys.argv[1]
+    coordinates_filename = sys.argv[2]
+    data = load_geocode_data(geocode_filename)
+    with open(coordinates_filename, 'w') as coordinates_file:
         json.dump(data, coordinates_file, indent=2)
 
 
-def load_geocode_data():
+def load_geocode_data(geocode_filename):
     data = {}
-    with open('geocode.txt', 'r', encoding='utf-16') as geocode_file:
+    with open(geocode_filename, 'r', encoding='utf-16') as geocode_file:
         for line in geocode_file.readlines():
             geocode_datum = json.loads(line)
             coordinates = parser.parse_coordinates(geocode_datum['geocode'])

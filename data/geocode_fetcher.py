@@ -1,22 +1,22 @@
 import sys
 import json
+import csv
 import googlemaps
-import tsv_reader
 
 
 def main():
     api_key = sys.argv[1]
+    parking_data_filename = sys.argv[2]
+    geocode_filename = sys.argv[3]
     client = googlemaps.Client(key=api_key)
-    load_geocode_data(client)
+    load_geocode_data(client, geocode_filename, parking_data_filename)
 
 
-def load_geocode_data(client):
-    addresses = load_addresses()
-    index = 0
-    with open('geocode.txt', 'w', encoding='utf-16') as geocode_file:
-        for address in addresses:
+def load_geocode_data(client, geocode_filename, parking_data_filename):
+    addresses = load_addresses(parking_data_filename)
+    with open(geocode_filename, 'w', encoding='utf-16') as geocode_file:
+        for index, address in enumerate(addresses):
             print_progress(index, len(addresses))
-            index += 1
             geocode_result = fetch_geocode(address, client)
             output_str = json.dumps({
                 'address': address,
@@ -40,10 +40,15 @@ def fetch_geocode(address, client):
         return None
 
 
-def load_addresses():
-    data = tsv_reader.load_parking_data()
-    addresses = set([row['Osoite'] for row in data if len(row['Osoite']) > 0])
-    return sorted(list(addresses))
+def load_addresses(parking_data_filename):
+    data = load_parking_data(parking_data_filename)
+    unique_addresses = set([row['Osoite'] for row in data if len(row['Osoite']) > 0])
+    return sorted(list(unique_addresses))
+
+
+def load_parking_data(filename):
+    with open(filename, encoding='utf-16') as tsv_file:
+        return list(csv.DictReader(tsv_file, delimiter='\t'))
 
 
 if __name__ == '__main__':

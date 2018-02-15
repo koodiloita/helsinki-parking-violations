@@ -1,7 +1,7 @@
 import unittest
 import io
-import parser
 import csv
+import parser
 
 
 TSV_FILE = """Virheen tekokuukausi	Virheen tekovuosi	Osoite	Virhemaksun vaihe	Virheen pääluokka / pääsyy	Virheen kirjaaja	y	x	Postinumero	Postitoimipaikka	Alue	Kunta	Kunta_nro
