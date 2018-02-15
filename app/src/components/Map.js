@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { observer } from 'mobx-react'
 import { extendObservable, computed } from 'mobx'
+import * as _ from 'lodash'
 
 import './Map.css'
-import config from '../config'
 
-mapboxgl.accessToken = config.mapBoxToken
+mapboxgl.accessToken = _.get(process.env, 'REACT_APP_MAPBOX_TOKEN', '')
 
 const Map = observer(class Map extends Component {
   constructor(props) {

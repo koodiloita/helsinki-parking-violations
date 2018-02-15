@@ -22,3 +22,6 @@ yarn-error.log*
 
 # Application data
 src/data/appData.json
+
+# Environment variables
+.env
