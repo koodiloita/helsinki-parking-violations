@@ -9,6 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1 className="AppHeader">Helsingin pysäköintivirheet</h1>
         <DatePanel appStore={ appStore } />
         <Map appStore={ appStore } />
       </div>

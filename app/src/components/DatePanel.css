@@ -1,19 +1,36 @@
 .DatePanel {
   text-align: center;
+  font-size: 16px;
 }
 
 .DatePanel h1 {
+  font-size: 30px;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
   font-weight: normal;
   margin: 5px;
 }
 
+@media only screen and (max-width: 820px) {
+  .DatePanel h1 {
+    font-size: 18px;
+  }
+}
+
 .PanelItem {
-  padding: 10px;
+  font-size: 16px;
+  padding: 10px 10px 8px;
   display: inline-block;
 }
 
+@media only screen and (max-width: 820px) {
+  .PanelItem {
+    padding: 10px 8px 8px;
+  }
+}
+
 .PanelItem.Selected {
-  background: #333;
+  color: #00A1FF;
 }
 
 .PanelItem.Disabled {
@@ -33,6 +50,13 @@
   padding: 10px;
   cursor: pointer;
   display: inline-block;
+  vertical-align: bottom;
+}
+
+@media only screen and (max-width: 820px) {
+  .ChangeYear {
+    padding: 10px 5px;
+  }
 }
 
 .ChangeYear:hover {
@@ -43,7 +67,36 @@
   opacity: 0.3;
 }
 
-@media only screen and (max-width: 720px) {
+.ChangeYearText {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 820px) {
+  .ChangeYearText {
+    display: none;
+  }
+}
+
+.Arrow {
+  width: 0;
+  height: 0;
+}
+
+.ArrowRight {
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #ddd;
+  float: right;
+}
+
+.ArrowLeft {
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right:7px solid #ddd;
+}
+
+@media only screen and (max-width: 820px) {
   .Long {
     display: none;
   }
@@ -57,7 +110,7 @@
   }
 }
 
-@media only screen and (min-width: 720px) and (max-width: 1024px) {
+@media only screen and (min-width: 820px) and (max-width: 1200px) {
   .Long {
     display: none;
   }
@@ -71,7 +124,7 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1200px) {
   .Long {
     display: block;
   }

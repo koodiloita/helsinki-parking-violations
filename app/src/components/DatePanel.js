@@ -10,7 +10,10 @@ const DatePanel = observer(({ appStore }) =>
   <div className="DatePanel">
     <h1>{appStore.displayYear}</h1>
     <div className="Dates">
-    <div onClick={() => choosePreviousYear(appStore)} className={previousYearSelectionClassNames(appStore)}>&larr; {appStore.displayPreviousYear}</div>
+    <div onClick={() => choosePreviousYear(appStore)} className={previousYearSelectionClassNames(appStore)}>
+      <div className="ChangeYearText">{appStore.displayPreviousYear}</div>
+      <div className="Arrow ArrowLeft"></div>
+    </div>
       {
         _.map(appStore.monthSelections[appStore.displayYear], (selection) => {
           const panelItemClassNames = classNames({
@@ -28,7 +31,10 @@ const DatePanel = observer(({ appStore }) =>
           )
         })
       }
-      <div onClick={() => chooseNextYear(appStore)} className={nextYearSelectionClassNames(appStore)}>{appStore.displayNextYear} &rarr;</div>
+      <div onClick={() => chooseNextYear(appStore)} className={nextYearSelectionClassNames(appStore)}>
+      <div className="ChangeYearText">{appStore.displayNextYear}</div>
+        <div className="Arrow ArrowRight"></div>
+      </div>
     </div>
   </div>
 )
