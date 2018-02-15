@@ -22,10 +22,6 @@ Note that the number of requests to Google API for the whole dataset is roughly 
 
 ## Run visualization app
 
-1. Go to folder `app`
-2. Create the environment variables file `app/.env` and add following line:
- ```
- REACT_APP_MAPBOX_TOKEN=<MAPBOX_TOKEN>
- ```
-3. Run `yarn install` or `npm install` to install the dependencies
-4. Run `yarn start` or `npm start` to start the application and open the url [http://localhost:3000](http://localhost:3000)
+1. Add MapBox token to file `app/src/config.js`
+2. Go to folder `app/` and run `yarn install` or `npm install` to install the dependencies
+3. Run `yarn start` or `npm start` to start the application and open the url [http://localhost:3000](http://localhost:3000)
