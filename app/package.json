@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
-    "dotenv": "^5.0.0",
     "lodash": "^4.17.4",
     "mapbox-gl": "^0.44.0",
     "mobx": "^3.5.1",
