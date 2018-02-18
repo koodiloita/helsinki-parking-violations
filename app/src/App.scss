@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .AppHeader {
   font-size: 40px;
   margin: 5px 0 15px;
@@ -5,10 +7,9 @@
   font-family: 'Lato', sans-serif;
   text-transform: uppercase;
   font-weight: normal;
-}
 
-@media only screen and (max-width: 820px) {
-  .AppHeader {
+  @media only screen and (max-width: $media-size-narrow) {
     font-size: 24px;
   }
 }
+

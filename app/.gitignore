@@ -22,3 +22,6 @@ yarn-error.log*
 
 # Application data
 src/data/appData.json
+
+# Sass preprocessor generated files
+src/**/*.css

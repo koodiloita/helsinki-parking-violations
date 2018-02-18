@@ -1,3 +1,5 @@
+@import '../styles/variables.scss';
+
 .DatePanel {
   text-align: center;
   font-size: 16px;
@@ -9,10 +11,8 @@
   text-transform: uppercase;
   font-weight: normal;
   margin: 5px;
-}
 
-@media only screen and (max-width: 820px) {
-  .DatePanel h1 {
+  @media only screen and (max-width: $media-size-narrow) {
     font-size: 18px;
   }
 }
@@ -21,29 +21,27 @@
   font-size: 16px;
   padding: 10px 10px 8px;
   display: inline-block;
-}
 
-@media only screen and (max-width: 820px) {
-  .PanelItem {
+  @media only screen and (max-width: $media-size-narrow) {
     padding: 10px 8px 8px;
   }
 }
 
 .PanelItem.Selected {
-  color: #00A1FF;
+  color: $link-selected-color;
 }
 
 .PanelItem.Disabled {
-  opacity: 0.3;
+  opacity: $link-disabled-opacity;
 }
 
 .PanelItem:hover {
   cursor: pointer;
-  background: #222;
+  background: $link-hover-color;
 }
 
 .PanelItem.Selected:hover {
-  background: #333;
+  background: $link-selected-hover-color;
 }
 
 .ChangeYear {
@@ -51,29 +49,25 @@
   cursor: pointer;
   display: inline-block;
   vertical-align: bottom;
-}
 
-@media only screen and (max-width: 820px) {
-  .ChangeYear {
+  @media only screen and (max-width: $media-size-narrow) {
     padding: 10px 5px;
   }
 }
 
 .ChangeYear:hover {
-  background: #222;
+  background: $link-hover-color;
 }
 
 .ChangeYear.Disabled {
-  opacity: 0.3;
+  opacity: $link-disabled-opacity;
 }
 
 .ChangeYearText {
   margin-bottom: 5px;
   font-size: 12px;
-}
 
-@media only screen and (max-width: 820px) {
-  .ChangeYearText {
+  @media only screen and (max-width: $media-size-narrow) {
     display: none;
   }
 }
@@ -96,7 +90,7 @@
   border-right:7px solid #ddd;
 }
 
-@media only screen and (max-width: 820px) {
+@media only screen and (max-width: $media-size-narrow) {
   .Long {
     display: none;
   }
@@ -110,7 +104,7 @@
   }
 }
 
-@media only screen and (min-width: 820px) and (max-width: 1200px) {
+@media only screen and (min-width: $media-size-narrow) and (max-width: $media-size-wide) {
   .Long {
     display: none;
   }
@@ -124,7 +118,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: $media-size-wide) {
   .Long {
     display: block;
   }

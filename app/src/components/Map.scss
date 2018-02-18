@@ -1,0 +1,14 @@
+@import '../styles/variables.scss';
+
+.Map {
+  position: fixed;
+  top: 170px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: $app-bg;
+
+  @media only screen and (max-width: $media-size-narrow) {
+    top: 120px;
+  }
+}
