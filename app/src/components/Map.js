@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { observer } from 'mobx-react'
 import { extendObservable, computed } from 'mobx'
+import * as _ from 'lodash'
 
 import './Map.css'
 import config from '../config'
@@ -30,6 +31,7 @@ const Map = observer(class Map extends Component {
 
   componentDidMount() {
     const map = createMap()
+    window.map = map
     setLayers(map, this.mapData)
     this.setState({
       map
@@ -62,7 +64,7 @@ const setLayers = (map, data) => {
           type: 'exponential',
           stops: [
             [1, 0],
-            [30, 1]
+            [50, 1]
           ]
         },
         'heatmap-intensity': {
@@ -84,14 +86,14 @@ const setLayers = (map, data) => {
         'heatmap-radius': {
           stops: [
             [11, 10],
-            [15, 15]
+            [14, 20]
           ]
         },
         'heatmap-opacity': {
           default: 1,
           stops: [
-            [19, 1],
-            [20, 0]
+            [14, 1],
+            [17, 0]
           ]
         },
       }
@@ -104,38 +106,51 @@ const setLayers = (map, data) => {
       minzoom: 14,
       paint: {
         'circle-radius': {
-          property: 'dbh',
+          property: 'value',
           type: 'exponential',
           stops: [
-            [{ zoom: 15, value: 10 }, 3],
-            [{ zoom: 15, value: 20 }, 10],
-            [{ zoom: 22, value: 10 }, 20],
-            [{ zoom: 22, value: 20 }, 50],
+            [1, 5],
+            [10, 7],
+            [20, 10],
+            [40, 15],
+            [60, 20],
+            [80, 25],
+            [100, 30],
+            [150, 40],
+            [200, 50]
           ]
         },
-        'circle-color': {
-          property: 'dbh',
+        'circle-stroke-color': {
+          property: 'value',
           type: 'exponential',
           stops: [
-            [0, 'rgba(236,222,239,0)'],
-            [10, 'rgb(236,222,239)'],
-            [20, 'rgb(208,209,230)'],
-            [30, 'rgb(166,189,219)'],
-            [40, 'rgb(103,169,207)'],
-            [50, 'rgb(28,144,153)'],
-            [60, 'rgb(1,108,89)']
+            [5, 'rgba(255, 255, 255, 0.3)'],
+            [10, 'rgba(255, 255, 255, 0.5)'],
+            [11, 'rgba(255, 255, 255, 0.7)'],
+            [30, 'rgba(255, 255, 255, 1)']
           ]
         },
-        'circle-stroke-color': 'white',
+        'circle-color': 'rgba(0, 0, 0, 0.5)',
         'circle-stroke-width': 1,
         'circle-opacity': {
           stops: [
             [14, 0],
-            [15, 1]
+            [15, 0.5]
           ]
         }
       }
     }, 'waterway-label')
+  })
+
+  map.on('click', 'parkingViolationsPoint', (e) => {
+    const parkingViolationsCount = _.get(e, 'features[0].properties.value', 0)
+    const address = _.get(e, 'features[0].properties.address', '')
+    const pointCoordinates = _.get(e, 'features[0].geometry.coordinates', null)
+    const contentText = parkingViolationsCount === 1 ? 'pysäköintivirhe' : 'pysäköintivirhettä'
+    new mapboxgl.Popup()
+      .setLngLat(pointCoordinates)
+      .setHTML(`<b>${address}</b><br /> <b>${parkingViolationsCount}</b> ${contentText}`)
+      .addTo(map)
   })
 }
 

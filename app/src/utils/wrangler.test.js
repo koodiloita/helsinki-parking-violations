@@ -15,7 +15,8 @@ describe('when geojson data of selected year and month is parsed', () => {
             type: 'Point'
           },
           properties: {
-            value: 1
+            value: 1,
+            address: 'Aadolfinkatu 11'
           },
           type: 'Feature'
         }

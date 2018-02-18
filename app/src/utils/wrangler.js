@@ -50,7 +50,8 @@ const convertToGeoJsonFeature = (datum) => {
   return {
     type: 'Feature',
     properties: {
-      value: datum.value
+      value: datum.value,
+      address: datum.address
     },
     geometry: {
       type: 'Point',
