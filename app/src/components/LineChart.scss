@@ -1,0 +1,58 @@
+@import '../styles/variables.scss';
+
+.LineChart {
+  background: $app-bg;
+  margin: 0 auto;
+  width: $media-size-narrow;
+  height: 500px;
+
+  @media only screen and (max-width: $media-size-narrow) {
+    overflow: scroll;
+    margin: 0 10px;
+    width: auto;
+  }
+}
+
+.ChartCircle {
+  stroke: $chart-line-color;
+  stroke-width: 2px;
+}
+
+.ChartCircle.Selected {
+  stroke: $link-selected-color;
+  stroke-width: 3px;
+}
+
+.ChartPath {
+  fill: none;
+  stroke: $chart-line-color;
+  stroke-width: 2px;
+}
+
+.AxisLine {
+  stroke: $chart-line-color;
+  stroke-width: 2px;
+}
+
+.AxisText {
+  fill: $app-text-color;
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.AxisLegend {
+  fill: $app-text-color;
+  font-size: 12px;
+}
+
+.CircleValue {
+  fill: $app-text-color;
+  opacity: 0;
+  font-size: 10px;
+  text-anchor: middle;
+
+  &.Selected {
+    opacity: 1;
+    font-size: 16px;
+  }
+}

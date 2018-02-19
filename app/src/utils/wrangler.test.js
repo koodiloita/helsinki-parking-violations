@@ -1,7 +1,8 @@
 import {
   getMonthSelections,
   getLastYear,
-  getGeoJsonData
+  getGeoJsonData,
+  getChartData
 } from './wrangler'
 
 describe('when geojson data of selected year and month is parsed', () => {
@@ -227,6 +228,113 @@ describe('when month selections are collected', () => {
     expect(monthSelections).toEqual(expectedMonthSelections)
   })
 })
+
+describe('when chart data of selected address are parsed', () => {
+  it('should collect all the data points and convert year and month to Date object', () => {
+    const address = 'Aadolfinkatu 11'
+    const expectedChartData = [
+      {
+        date: new Date(2016, 1 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2016, 2 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2016, 3 - 1, 1, 0, 0, 0, 0),
+        value: 3
+      },
+      {
+        date: new Date(2016, 4 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2016, 5 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2016, 6 - 1, 1, 0, 0, 0, 0),
+        value: 2
+      },
+      {
+        date: new Date(2016, 7 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2016, 8 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2016, 9 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2016, 10 - 1, 1, 0, 0, 0, 0),
+        value: 2
+      },
+      {
+        date: new Date(2016, 11 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2016, 12 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2017, 1 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2017, 2 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2017, 3 - 1, 1, 0, 0, 0, 0),
+        value: 5
+      },
+      {
+        date: new Date(2017, 4 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2017, 5 - 1, 1, 0, 0, 0, 0),
+        value: 1
+      },
+      {
+        date: new Date(2017, 6 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2017, 7 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2017, 8 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2017, 9 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2017, 10 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2017, 11 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      },
+      {
+        date: new Date(2017, 12 - 1, 1, 0, 0, 0, 0),
+        value: 0
+      }
+    ]
+    const chartData = getChartData(mockdata, address)
+    expect(chartData).toEqual(expectedChartData)
+  })
+})
+
 
 const mockdata = {
   "Aadolfinkatu 11": {

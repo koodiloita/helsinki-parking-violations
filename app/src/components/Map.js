@@ -32,7 +32,7 @@ const Map = observer(class Map extends Component {
   componentDidMount() {
     const map = createMap()
     window.map = map
-    setLayers(map, this.mapData)
+    setLayers(map, this.mapData, this.props.appStore.selectAddress)
     this.setState({
       map
     })
@@ -46,7 +46,7 @@ const updateMapData = (map, data) => {
   }
 }
 
-const setLayers = (map, data) => {
+const setLayers = (map, data, selectAddress) => {
   map.on('load', function() {
     map.addSource('parkingViolations', {
       type: 'geojson',
@@ -143,14 +143,8 @@ const setLayers = (map, data) => {
   })
 
   map.on('click', 'parkingViolationsPoint', (e) => {
-    const parkingViolationsCount = _.get(e, 'features[0].properties.value', 0)
     const address = _.get(e, 'features[0].properties.address', '')
-    const pointCoordinates = _.get(e, 'features[0].geometry.coordinates', null)
-    const contentText = parkingViolationsCount === 1 ? 'pysäköintivirhe' : 'pysäköintivirhettä'
-    new mapboxgl.Popup()
-      .setLngLat(pointCoordinates)
-      .setHTML(`<b>${address}</b><br /> <b>${parkingViolationsCount}</b> ${contentText}`)
-      .addTo(map)
+    selectAddress(address)
   })
 }
 

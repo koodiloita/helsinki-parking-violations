@@ -8,3 +8,22 @@ $link-selected-hover-color: #222;
 
 $media-size-narrow: 820px;
 $media-size-wide: 1200px;
+
+$map-top-narrow: 120px;
+$map-top-wide: 170px;
+
+$dialog-bg: #212323;
+
+$chart-line-color: #747B7B;
+
+@mixin secondary-header() {
+  font-size: 30px;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin: 5px;
+
+  @media only screen and (max-width: $media-size-narrow) {
+    font-size: 18px;
+  }
+}

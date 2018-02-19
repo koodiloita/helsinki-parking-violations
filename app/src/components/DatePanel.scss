@@ -6,15 +6,7 @@
 }
 
 .DatePanel h1 {
-  font-size: 30px;
-  font-family: 'Lato', sans-serif;
-  text-transform: uppercase;
-  font-weight: normal;
-  margin: 5px;
-
-  @media only screen and (max-width: $media-size-narrow) {
-    font-size: 18px;
-  }
+  @include secondary-header();
 }
 
 .PanelItem {

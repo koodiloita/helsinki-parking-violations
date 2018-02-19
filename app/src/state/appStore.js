@@ -1,5 +1,5 @@
 import { extendObservable, action, computed } from 'mobx'
-import { getMonthSelections, getLastYear, getGeoJsonData } from '../utils/wrangler'
+import { getMonthSelections, getLastYear, getGeoJsonData, getChartData } from '../utils/wrangler'
 import * as _ from 'lodash'
 
 const appData = require('../data/appData.json')
@@ -28,6 +28,16 @@ class AppStore {
       }),
       choosePreviousYear: action(() => {
         this.displayYear = `${_.parseInt(this.displayYear) - 1}`
+      }),
+      selectedAddress: null,
+      addressChartData: [],
+      selectAddress: action((address) => {
+        this.selectedAddress = address
+        this.addressChartData = getChartData(appData, address)
+      }),
+      deselectAddress: action(() => {
+        this.selectedAddress = null
+        this.addressChartData = []
       })
     })
   }

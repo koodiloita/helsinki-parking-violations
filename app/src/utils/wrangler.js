@@ -1,5 +1,18 @@
 import * as _ from 'lodash'
 
+const getChartData = (data, address) => {
+  const addressData = _.get(data[address], 'violationCounts') || {}
+  const chartDataChunks = _.map(addressData, (yearCounts, year) => {
+    return _.map(yearCounts, (monthCount, month) => {
+      return {
+        date: new Date(_.parseInt(year), _.parseInt(month) - 1, 1, 0, 0, 0, 0),
+        value: monthCount
+      }
+    })
+  })
+  return _.flatten(chartDataChunks)
+}
+
 const getMonthSelections = (data) => {
   const years = parseYears(data)
   return _.reduce(years, (result, year) => {
@@ -85,6 +98,7 @@ const parseYears = (data) => {
 }
 
 export {
+  getChartData,
   getLastYear,
   getMonthSelections,
   getGeoJsonData

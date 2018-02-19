@@ -1,0 +1,50 @@
+@import '../styles/variables.scss';
+
+.ChartDialog {
+  position: fixed;
+  top: $map-top-wide;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $dialog-bg;
+  z-index: 1;
+  opacity: 0.8;
+
+  @media only screen and (max-width: $media-size-narrow) {
+    top: $map-top-narrow;
+  }
+}
+
+.ClosePanel {
+  margin: 10px auto;
+  width: $media-size-narrow;
+  text-align: right;
+
+  @media only screen and (max-width: $media-size-narrow) {
+    margin: 10px;
+    width: auto;
+  }
+}
+
+.CloseButton {
+  font-weight: bold;
+  font-size: 12px;
+  display: inline-block;
+  padding: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background: lighten($dialog-bg, 5%);
+  }
+}
+
+.CloseIcon {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.ChartHeader {
+  text-align: center;
+  @include secondary-header();
+  margin-bottom: 30px;
+}
