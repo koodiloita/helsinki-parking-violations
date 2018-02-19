@@ -4,7 +4,7 @@
   background: $app-bg;
   margin: 0 auto;
   width: $media-size-narrow;
-  height: 500px;
+  height: 300px;
 
   @media only screen and (max-width: $media-size-narrow) {
     overflow: scroll;

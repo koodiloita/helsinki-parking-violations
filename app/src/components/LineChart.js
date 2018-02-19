@@ -8,7 +8,7 @@ import * as moment from 'moment'
 
 import './LineChart.css'
 
-const graphHeight = 500
+const graphHeight = 300
 const graphWidth = 820
 const padding = 50
 const axisPadding = padding / 2
