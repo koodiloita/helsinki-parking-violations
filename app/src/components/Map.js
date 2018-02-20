@@ -146,6 +146,14 @@ const setLayers = (map, data, selectAddress) => {
     const address = _.get(e, 'features[0].properties.address', '')
     selectAddress(address)
   })
+
+  map.on('mousemove', 'parkingViolationsPoint', () => {
+    map.getCanvas().style.cursor = 'pointer'
+  })
+
+  map.on('mouseleave', 'parkingViolationsPoint', () => {
+    map.getCanvas().style.cursor = ''
+  })
 }
 
 const createMap = () => {
