@@ -42,10 +42,20 @@ const LineChart = observer(({ appStore }) => {
   const isSelected = (datum, year, month) => datum.date.getFullYear() === _.parseInt(year) && datum.date.getMonth() === _.parseInt(month) - 1
   const isSelectedDate = (datum) => isSelected(datum, appStore.selectedYear, appStore.selectedMonth)
   const isHoveredDate = (datum) => isSelected(datum, appStore.hoveredYear, appStore.hoveredMonth)
-  const hoverDate = (datum) => {
+  const parseYearAndMonth = (datum) => {
     const year = String(datum.date.getFullYear())
     const month = String(datum.date.getMonth() + 1)
+    return {
+      year, month
+    }    
+  }
+  const hoverDate = (datum) => {
+    const {year, month} = parseYearAndMonth(datum)
     appStore.hoverDate(year, month)
+  }
+  const selectDate = (datum) => {
+    const {year, month} = parseYearAndMonth(datum)
+    appStore.setDate(year, month)  
   }
 
   return (
@@ -67,7 +77,7 @@ const LineChart = observer(({ appStore }) => {
               const radius = isSelected ? selectedCircleRadius : circleRadius
               return (
                 <circle key={index} className={circleClasses} r={radius} cx={xScale(datum.date)} cy={yScale(datum.value)}
-                  onMouseEnter={() => hoverDate(datum)} onMouseLeave={appStore.unhoverDate} />
+                  onMouseEnter={() => hoverDate(datum)} onMouseLeave={appStore.unhoverDate} onClick={() => selectDate(datum)} />
               )
             })
           }

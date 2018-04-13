@@ -15,6 +15,9 @@ class AppStore {
       setDate: action((year, month) => {
         this.selectedMonth = month
         this.selectedYear = year
+        if (year !== this.displayYear) {
+          this.displayYear = year
+        }
         this.geoJsonData = getGeoJsonData(year, month, appData)
       }),
       hoveredMonth: null,
