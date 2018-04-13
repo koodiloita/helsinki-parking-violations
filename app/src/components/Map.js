@@ -99,27 +99,29 @@ const setLayers = (map, data, selectAddress) => {
       }
     }, 'waterway-label')
 
+    const circleRadius = {
+      property: 'value',
+      type: 'exponential',
+      stops: [
+        [1, 5],
+        [10, 7],
+        [20, 10],
+        [40, 15],
+        [60, 20],
+        [80, 25],
+        [100, 30],
+        [150, 40],
+        [200, 50]
+      ]
+    }
+
     map.addLayer({
       id: 'parkingViolationsPoint',
       type: 'circle',
       source: 'parkingViolations',
       minzoom: 14,
       paint: {
-        'circle-radius': {
-          property: 'value',
-          type: 'exponential',
-          stops: [
-            [1, 5],
-            [10, 7],
-            [20, 10],
-            [40, 15],
-            [60, 20],
-            [80, 25],
-            [100, 30],
-            [150, 40],
-            [200, 50]
-          ]
-        },
+        'circle-radius': circleRadius,
         'circle-stroke-color': {
           property: 'value',
           type: 'exponential',
@@ -140,21 +142,40 @@ const setLayers = (map, data, selectAddress) => {
         }
       }
     }, 'waterway-label')
+
+    map.addLayer({
+      id: 'addressHover',
+      type: 'circle',
+      source: 'parkingViolations',
+      layout: {},
+      paint: {
+        'circle-radius': circleRadius,
+        'circle-stroke-width': 1,
+        'circle-stroke-color': 'rgba(255, 255, 255, 1)',
+        'circle-color': 'rgba(255, 255, 255, 0.5)',
+      },
+      filter: ['==', 'name', '']
+    })
   })
 
   map.on('click', 'parkingViolationsPoint', (e) => {
-    const address = _.get(e, 'features[0].properties.address', '')
+    const address = parseAddress(e)
     selectAddress(address)
   })
 
-  map.on('mousemove', 'parkingViolationsPoint', () => {
+  map.on('mousemove', 'parkingViolationsPoint', (e) => {
     map.getCanvas().style.cursor = 'pointer'
+    const address = parseAddress(e)
+    map.setFilter('addressHover', ['==', 'address', address])
   })
 
   map.on('mouseleave', 'parkingViolationsPoint', () => {
     map.getCanvas().style.cursor = ''
+    map.setFilter('addressHover', ['==', 'address', ''])
   })
 }
+
+const parseAddress = (event) => _.get(event, 'features[0].properties.address', '')
 
 const createMap = () => {
   const map = new mapboxgl.Map({
