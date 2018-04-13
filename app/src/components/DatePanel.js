@@ -18,12 +18,14 @@ const DatePanel = observer(({ appStore }) =>
         _.map(appStore.monthSelections[appStore.displayYear], (selection) => {
           const panelItemClassNames = classNames({
             PanelItem: true,
+            Hovered: appStore.hoveredMonth === selection.month && appStore.hoveredYear === selection.year,
             Selected: appStore.selectedMonth === selection.month && appStore.selectedYear === selection.year,
             Disabled: !selection.selectable
           })
           const selectMonth = () => selection.selectable ? appStore.setDate(selection.year, selection.month) : null
           return (
-            <div className={panelItemClassNames} onClick={selectMonth} key={selection.month}>
+            <div className={panelItemClassNames} onClick={selectMonth} key={selection.month}
+              onMouseEnter={() => appStore.hoverDate(selection.year, selection.month)} onMouseLeave={appStore.unhoverDate}>
               <div className="Long">{getMonthTitle(selection.month)}</div>
               <div className="ShortHand">{getMonthShortHand(selection.month)}</div>
               <div className="Number">{selection.month}</div>

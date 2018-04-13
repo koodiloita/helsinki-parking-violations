@@ -16,6 +16,14 @@
 .ChartCircle {
   stroke: $chart-line-color;
   stroke-width: 2px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.Hovered {
+    stroke: $link-selected-color;
+  }
 }
 
 .ChartCircle.Selected {
@@ -50,6 +58,11 @@
   opacity: 0;
   font-size: 10px;
   text-anchor: middle;
+
+  &.Hovered {
+    opacity: 0.8;
+    font-size: 14px;    
+  }
 
   &.Selected {
     opacity: 1;

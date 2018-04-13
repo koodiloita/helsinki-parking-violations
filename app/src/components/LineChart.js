@@ -13,8 +13,8 @@ const graphWidth = 820
 const padding = 50
 const axisPadding = padding / 2
 const textOffset = 12
-const circleRadius = 3
-const selectedCircleRadius = 5
+const circleRadius = 4
+const selectedCircleRadius = 6
 const yAxisValuesCount = 5
 const xAxisValuesCount = 8
 
@@ -39,7 +39,14 @@ const LineChart = observer(({ appStore }) => {
   const xAxisValues = xScale.ticks(xAxisValuesCount)
   const yAxisValues = yScale.ticks(yAxisValuesCount)
 
-  const isSelectedDate = (datum) => datum.date.getFullYear() === _.parseInt(appStore.selectedYear) && datum.date.getMonth() === _.parseInt(appStore.selectedMonth) - 1
+  const isSelected = (datum, year, month) => datum.date.getFullYear() === _.parseInt(year) && datum.date.getMonth() === _.parseInt(month) - 1
+  const isSelectedDate = (datum) => isSelected(datum, appStore.selectedYear, appStore.selectedMonth)
+  const isHoveredDate = (datum) => isSelected(datum, appStore.hoveredYear, appStore.hoveredMonth)
+  const hoverDate = (datum) => {
+    const year = String(datum.date.getFullYear())
+    const month = String(datum.date.getMonth() + 1)
+    appStore.hoverDate(year, month)
+  }
 
   return (
     <div className="LineChart">
@@ -51,13 +58,16 @@ const LineChart = observer(({ appStore }) => {
           {
             _.map(chartData, (datum, index) => {
               const isSelected = isSelectedDate(datum)
+              const isHovered = isHoveredDate(datum)
               const circleClasses = classNames({
                 ChartCircle: true,
-                Selected: isSelected
+                Selected: isSelected,
+                Hovered: isHovered
               })
               const radius = isSelected ? selectedCircleRadius : circleRadius
               return (
-                <circle key={index} className={circleClasses} r={radius} cx={xScale(datum.date)} cy={yScale(datum.value)} />
+                <circle key={index} className={circleClasses} r={radius} cx={xScale(datum.date)} cy={yScale(datum.value)}
+                  onMouseEnter={() => hoverDate(datum)} onMouseLeave={appStore.unhoverDate} />
               )
             })
           }
@@ -66,9 +76,11 @@ const LineChart = observer(({ appStore }) => {
           {
             _.map(chartData, (datum, index) => {
               const isSelected = isSelectedDate(datum)
+              const isHovered = isHoveredDate(datum)
               const textClasses = classNames({
                 CircleValue: true,
-                Selected: isSelected
+                Selected: isSelected,
+                Hovered: isHovered
               })
               return (
                 <text key={index} className={textClasses} x={xScale(datum.date)} y={yScale(datum.value) - textOffset}>{datum.value}</text>

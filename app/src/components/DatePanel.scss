@@ -29,10 +29,13 @@
 
 .PanelItem:hover {
   cursor: pointer;
+}
+
+.PanelItem.Hovered {
   background: $link-hover-color;
 }
 
-.PanelItem.Selected:hover {
+.PanelItem.Selected:hover, .PanelItem.Selected.Hovered {
   background: $link-selected-hover-color;
 }
 

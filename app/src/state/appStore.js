@@ -17,6 +17,16 @@ class AppStore {
         this.selectedYear = year
         this.geoJsonData = getGeoJsonData(year, month, appData)
       }),
+      hoveredMonth: null,
+      hoveredYear: null,
+      hoverDate: action((year, month) => {
+        this.hoveredMonth = month
+        this.hoveredYear = year
+      }),
+      unhoverDate: action(() => {
+        this.hoveredMonth = null
+        this.hoveredYear = null
+      }),
       monthSelections: getMonthSelections(appData),
       geoJsonData: getGeoJsonData(selectedYear, selectedMonth, appData),
       displayNextYear: computed(() =>  `${_.parseInt(this.displayYear) + 1}`),
