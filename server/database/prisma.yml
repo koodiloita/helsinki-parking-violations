@@ -1,0 +1,8 @@
+service: parking
+stage: dev
+
+datamodel: datamodel.graphql
+
+disableAuth: true
+
+cluster: local

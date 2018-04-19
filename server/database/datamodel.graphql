@@ -1,0 +1,15 @@
+type Address {
+  id: ID! @unique
+  title: String!
+  lat: Float!
+  lon: Float!
+  violationCounts: [ViolationCount!]!
+}
+
+type ViolationCount {
+  id: ID! @unique
+  address: Address!
+  year: Int!
+  month: Int!
+  count: Int!
+}
