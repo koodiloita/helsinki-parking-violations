@@ -1,9 +1,152 @@
 import {
+  getAvailableDates,
   getMonthSelections,
   getLastYear,
   getGeoJsonData,
   getChartData
 } from './wrangler'
+
+describe('when all the dates are parsed from query result', () => {
+  it('should give all the years and indicate whether month is selectable', () => {
+    const mockQueryResult = [
+      { year: 2016, month: 1, count: 2 },
+      { year: 2016, month: 1, count: 2 },
+      { year: 2016, month: 2, count: 2 },
+      { year: 2016, month: 3, count: 2 },
+      { year: 2016, month: 12, count: 2 },
+      { year: 2017, month: 4, count: 2 },
+      { year: 2017, month: 5, count: 0 }
+    ]
+    const expectedDates = {
+      '2016': [
+        {
+          month: '1',
+          year: '2016',
+          selectable: true
+        },
+        {
+          month: '2',
+          year: '2016',
+          selectable: true
+        },
+        {
+          month: '3',
+          year: '2016',
+          selectable: true
+        },
+        {
+          month: '4',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '5',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '6',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '7',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '8',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '9',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '10',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '11',
+          year: '2016',
+          selectable: false
+        },
+        {
+          month: '12',
+          year: '2016',
+          selectable: true
+        }
+      ],
+      '2017': [
+        {
+          month: '1',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '2',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '3',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '4',
+          year: '2017',
+          selectable: true
+        },
+        {
+          month: '5',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '6',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '7',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '8',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '9',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '10',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '11',
+          year: '2017',
+          selectable: false
+        },
+        {
+          month: '12',
+          year: '2017',
+          selectable: false
+        }
+      ]
+    }
+    const dates = getAvailableDates(mockQueryResult)
+    expect(dates).toEqual(expectedDates)
+  })
+})
 
 describe('when geojson data of selected year and month is parsed', () => {
   it('should give data in geojson format and ignore points with no parking violations', () => {

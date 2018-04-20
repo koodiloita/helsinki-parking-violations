@@ -1,5 +1,30 @@
 import * as _ from 'lodash'
 
+const getAvailableDates = (parkingViolations) => {
+  const uniqueDatesWithViolations = _.chain(parkingViolations)
+    .filter((date) => date.count > 0)
+    .map((date) => {
+      return {
+        year: date.year,
+        month: date.month,
+        id: `${date.year}-${date.month}`
+      }
+    })
+    .uniqBy('id')
+    .value()
+  const years = _.uniq(_.map(uniqueDatesWithViolations, 'year')).sort()
+  return _.reduce(years, (result, year) => {
+    result[`${year}`] = _.map(_.range(1, 13), (month) => {
+      return {
+        year: `${year}`,
+        month: `${month}`,
+        selectable: _.some(uniqueDatesWithViolations, { year: year, month: month })
+      }
+    })
+    return result
+  }, {})
+}
+
 const getChartData = (data, address) => {
   const addressData = _.get(data[address], 'violationCounts') || {}
   const chartDataChunks = _.map(addressData, (yearCounts, year) => {
@@ -98,6 +123,7 @@ const parseYears = (data) => {
 }
 
 export {
+  getAvailableDates,
   getChartData,
   getLastYear,
   getMonthSelections,
