@@ -1,0 +1,21 @@
+type Query {
+  info: String!
+  violationCounts(year: Int, month: Int): [ViolationCount!]!
+  address(id: ID!): Address!
+}
+
+type Address {
+  id: ID!
+  title: String!
+  lat: Float!
+  lon: Float!
+  violationCounts: [ViolationCount!]!
+}
+
+type ViolationCount {
+  id: ID!
+  address: Address!
+  year: Int!
+  month: Int!
+  count: Int!
+}
